@@ -58,7 +58,7 @@ module Naturesoft
           render text: 'Country was successfully destroyed.'
         end
         
-        #CHANGE STATUS /articles
+        #CHANGE STATUS /countries
         def enable
           @country.enable
           render text: 'Country was successfully active.'
@@ -69,7 +69,7 @@ module Naturesoft
           render text: 'Country was successfully inactive.'
         end
         
-        # DELETE /articles/delete?ids=1,2,3
+        # DELETE /countries/delete?ids=1,2,3
         def delete
           @countries = Country.where(id: params[:ids].split(","))
           @countries.destroy_all
