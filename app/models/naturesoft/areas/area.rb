@@ -1,6 +1,20 @@
 module Naturesoft::Areas
   class Area < ApplicationRecord
     belongs_to :country
+    belongs_to :parent, class_name: "Area", optional: true
+    has_many :children, class_name: "Area", foreign_key: "parent_id"
+    
+    after_save :update_level
+    
+    def update_level
+      level = 1
+			p = self.parent
+			while !p.nil? do
+				level += 1
+				p = p.parent
+			end
+			self.update_column(:level, level)
+    end
     
     def self.sort_by
       [
@@ -34,6 +48,28 @@ module Naturesoft::Areas
       
       return records
     end
+    
+    # display name with parent
+    def full_name
+			names = [self.name]
+			p = self.parent
+			while !p.nil? do
+				names << p.name
+				p = p.parent
+			end
+			names.reverse.join(" >> ")
+		end
+    
+    # data for select2 ajax
+    def self.select2(params)
+			items = self.search(params).order("level")
+			if params[:excluded].present?
+				items = items.where.not(id: params[:excluded].split(","))
+			end
+			options = [{"id" => "", "text" => "none"}]
+			options += items.map { |c| {"id" => c.id, "text" => c.full_name} }
+			result = {"items" => options}
+		end
     
   end
 end

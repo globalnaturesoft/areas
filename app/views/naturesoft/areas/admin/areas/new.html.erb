@@ -1,5 +1,21 @@
-<h1>New Area</h1>
+<% title t(:new_area) %>
 
-<%= render 'form', area: @area %>
+<!-- Horizontal form options -->
+<div class="row">
+    <div class="col-md-12">
 
-<%= link_to 'Back', areas_path %>
+        <!-- Basic layout-->
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title"><%= t(:new_area) %></h5>
+            </div>
+            
+            <div class="panel-body">
+                <%= render 'form', area: @area %>
+            </div>
+
+        </div>
+        <!-- /basic layout -->
+    </div>
+</div>
+<!-- /horizontal form options -->

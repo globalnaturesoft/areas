@@ -1,5 +1,10 @@
 <% title t(:areas) %>
 
+<div class="page_actions">
+    <%= link_to "#{t(:new_area)} <i class=\"icon-plus22 position-right\"></i>".html_safe, naturesoft_areas.new_admin_area_path, class: 'btn btn-primary' %>
+</div>
+<br />
+
 <form class="listing-form">
     
     <div class="panel panel-flat">
@@ -67,11 +72,12 @@
                                 />
                             </td>
                             <td class="kq_search">
-                              <strong><%= item.name %></strong>
+                              <strong><%= link_to item.full_name, naturesoft_areas.edit_admin_area_path(item) %></strong>
                             </td>
                             <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
                             <td class="text-center">
                               <div class="btn-group">
+                                <%= link_to '<i class="icon-pencil"></i>'.html_safe, naturesoft_areas.edit_admin_area_path(item), class: "btn bg-teal btn-icon btn-xs", title: item.name %>
                                 <button type="button" class="btn bg-teal dropdown-toggle btn-xs" data-toggle="dropdown"><span class="caret"></span></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li>

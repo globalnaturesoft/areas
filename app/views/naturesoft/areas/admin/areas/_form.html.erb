@@ -1,17 +1,52 @@
-<%= form_for(area) do |f| %>
-  <% if area.errors.any? %>
+<% if area.errors.any? %>
+  <div class="alert alert-warning alert-bordered">
+    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
     <div id="error_explanation">
       <h2><%= pluralize(area.errors.count, "error") %> prohibited this area from being saved:</h2>
-
+  
       <ul>
       <% area.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
   </div>
+<% end %>
+
+<%= form_for([naturesoft_areas, :admin, area], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
+    
+    <div class="form-group">
+        <label class="col-md-2 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+        <div class="col-md-10">
+            <%= f.text_field :name, class: "form-control required" %>
+        </div>
+    </div>
+        
+    <div class="form-group">
+        <label class="col-md-2 control-label" ><%= t(:country) %></label>
+        <div class="col-md-10">
+            <%= f.collection_select(:country_id, Naturesoft::Areas::Country.all.order("name ASC"), :id, :name, {}, {class: "select2"}) %>
+        </div>
+    </div>
+        
+    <div class="form-group">
+      <label class="col-md-2 control-label" ><%= t(:parent_area) %></label>
+        <div class="col-md-10">
+            <% selected = options_for_select([[area.parent.full_name,area.parent.id]],1) if area.parent.present? %>
+            <%= select_tag("area[parent_id]",
+              selected,
+              {
+                class: "select2-ajax",
+                include_blank: "none",
+                "data-url": select2_admin_areas_path,
+                "data-excluded": area.id,
+              }
+            ) %>            
+        </div>
+    </div>
+        
+    <div class="text-right">
+        <%= button_tag "#{t(:save)} <i class=\"icon-plus22 position-right\"></i>".html_safe, class: "btn btn-primary"%>
+    </div>
+    
 <% end %>
