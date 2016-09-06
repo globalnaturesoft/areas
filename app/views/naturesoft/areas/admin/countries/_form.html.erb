@@ -1,0 +1,36 @@
+<% if country.errors.any? %>
+  <div class="alert alert-warning alert-bordered">
+    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+    <div id="error_explanation">
+      <h2><%= pluralize(country.errors.count, "error") %> prohibited this country from being saved:</h2>
+  
+      <ul>
+      <% country.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for([naturesoft_areas, :admin, country], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
+    
+    <div class="form-group">
+        <label class="col-md-2 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+        <div class="col-md-10">
+            <%= f.text_field :name, class: "form-control required" %>
+        </div>
+    </div>
+        
+    <div class="form-group">
+        <label class="col-md-2 control-label" ><%= t(:description) %></label>
+        <div class="col-md-10">
+            <%= f.text_area :description, rows: "5", cols: "5", class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="text-right">
+        <%= button_tag "#{t(:save)} <i class=\"icon-plus22 position-right\"></i>".html_safe, class: "btn btn-primary"%>
+    </div>
+    
+<% end %>

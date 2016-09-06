@@ -1,0 +1,8 @@
+<li>
+    <a href="#"><i class="icon-location4"></i> <span><%= t(:area) %></span></a>
+    <ul>
+        <li<% if["naturesoft/areas/admin/countries"].include?(params[:controller]) %>class="active"<% end %>>
+            <%= link_to t(:countries), naturesoft_areas.admin_countries_path %>
+        </li>
+    </ul>
+</li>
