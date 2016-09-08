@@ -75,6 +75,11 @@ module Naturesoft
           @countries.destroy_all
           render text: 'Country(countries) was successfully destroyed.'
         end
+        
+        # GET /countries/select2
+        def select2
+          render json: Country.select2(params)
+        end
     
         private
           # Use callbacks to share common setup or constraints between actions.
