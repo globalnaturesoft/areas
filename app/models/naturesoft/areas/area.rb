@@ -41,6 +41,11 @@ module Naturesoft::Areas
         end
       end
       
+      # Country
+      if params[:country_id].present?
+        records = records.where(country_id: params[:country_id])
+      end
+      
       # for sorting
       sort_by = params[:sort_by].present? ? params[:sort_by] : "naturesoft_areas_areas.name"
       sort_orders = params[:sort_orders].present? ? params[:sort_orders] : "desc"

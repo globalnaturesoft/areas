@@ -45,5 +45,16 @@ module Naturesoft::Areas
 			update_columns(status: "inactive")
 		end
     
+    # data for select2 ajax
+    def self.select2(params)
+			items = self.search(params).order("name")
+			if params[:excluded].present?
+				items = items.where.not(id: params[:excluded].split(","))
+			end
+			options = [{"id" => "", "text" => "none"}]
+			options += items.map { |c| {"id" => c.id, "text" => c.name} }
+			result = {"items" => options}
+		end
+    
   end
 end
