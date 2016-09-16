@@ -1,5 +1,5 @@
 Naturesoft::Areas::Engine.routes.draw do
-  namespace :admin, module: "admin", path: "admin/content" do
+  namespace :admin, module: "admin", path: "admin/areas" do
     resources :areas do
       collection do
         delete "delete"

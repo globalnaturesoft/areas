@@ -84,7 +84,7 @@ module Naturesoft
     
           # Only allow a trusted parameter "white list" through.
           def country_params
-            params.fetch(:country, {}).permit(:name, :description, :status)
+            params.fetch(:country, {}).permit(:name, :description)
           end
       end
     end
