@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
                   "Hung Nguyen"]
   s.email       = ["luanpm@hoangkhang.com.vn",
                   "sonnn@hoangkhang.com.vn",
-                  "hungtn@hoangkhang.com.vn"]
+                  "hungnt@hoangkhang.com.vn"]
   s.homepage    = "http://globalnaturesoft.com/"
   s.summary     = "Area feature of Global Naturesoft."
   s.description = "Area feature of Global Naturesoft."
