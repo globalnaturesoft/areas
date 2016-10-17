@@ -4,7 +4,7 @@ Naturesoft::Nsmodule.class_eval do
       "label" => "Areas List",
       "options" => {
         "areas" => [],
-        "descr" => nil,
+        "description" => nil,
         "style" => "default"
       }    
     },
