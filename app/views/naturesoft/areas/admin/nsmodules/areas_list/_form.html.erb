@@ -19,10 +19,20 @@
   </div>
   <div class="col-md-6">
     <div class="form-group">
-        <label class="control-label" ><%= t(:style) %> <span class='text-danger'>*</span></label>
+        <label class="control-label" ><%= t(:style) %> </label>
         <div class="">
-            <%= text_field_tag "options[style]", options["style"], class: "form-control required" %>
+            <%= text_area "options[description]", options["description"], class: "form-control" %>
         </div>
     </div>
   </div> 
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+        <label class="control-label" ><%= t(:style) %> <span class='text-danger'>*</span></label>
+        <div class="">
+          <%= text_field_tag "options[style]", options["style"], class: "form-control required" %>
+        </div>
+    </div>
+  </div>
 </div>
