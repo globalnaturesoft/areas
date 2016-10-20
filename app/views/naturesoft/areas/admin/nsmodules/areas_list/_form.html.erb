@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+        <label class="control-label" ><%= t(:areas) %> <span class='text-danger'>*</span></label>
+        <div class="">
+            <% areas = Naturesoft::Areas::Area.where(id: options["areas"]) %>
+            <% selected = options_for_select((areas.map {|c| [c.name, c.id]}), options["areas"]) if !areas.nil? %>
+            <%= select_tag("options[areas][]",
+              selected,
+              {
+                class: "select2-ajax",
+                include_blank: "none",
+                multiple: "multiple",
+                "data-url": naturesoft_areas.select2_admin_areas_path,
+              }
+            ) %>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+        <label class="control-label" ><%= t(:style) %> </label>
+        <div class="">
+            <%= text_area_tag "options[description]", options["description"], class: "form-control" %>
+        </div>
+    </div>
+  </div> 
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+        <label class="control-label" ><%= t(:style) %> <span class='text-danger'>*</span></label>
+        <div class="">
+          <%= text_field_tag "options[style]", options["style"], class: "form-control required" %>
+        </div>
+    </div>
+  </div>
+</div>
