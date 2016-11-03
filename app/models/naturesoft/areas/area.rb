@@ -3,6 +3,9 @@ module Naturesoft::Areas
     belongs_to :country
     belongs_to :parent, class_name: "Area", optional: true
     has_many :children, class_name: "Area", foreign_key: "parent_id"
+    if Naturesoft::Core.available?(:hotels)
+			has_and_belongs_to_many :hotels, class_name: 'Naturesoft::Hotels::Hotel', :join_table => 'naturesoft_hotels_areas_hotels'
+		end
     
     after_save :update_level
     
@@ -15,6 +18,22 @@ module Naturesoft::Areas
 			end
 			self.update_column(:level, level)
     end
+    
+    def get_all_related_ids
+			arr = []
+			arr << self.id
+			self.children.each do |i1|
+				arr << i1.id
+				i1.children.each do |i2|
+					arr << i2.id
+					i2.children.each do |i3|
+						arr << i3.id
+					end
+				end 
+			end
+			
+			return arr
+		end
     
     def self.sort_by
       [
