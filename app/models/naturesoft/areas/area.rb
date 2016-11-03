@@ -3,10 +3,9 @@ module Naturesoft::Areas
     belongs_to :country
     belongs_to :parent, class_name: "Area", optional: true
     has_many :children, class_name: "Area", foreign_key: "parent_id"
-    if Naturesoft::Core.available?(:hotels)
-			has_and_belongs_to_many :hotels, class_name: 'Naturesoft::Hotels::Hotel', :join_table => 'naturesoft_hotels_areas_hotels'
-		end
-    
+    if Naturesoft::Core.available?("hotels")
+        has_and_belongs_to_many :hotels, class_name: 'Naturesoft::Hotels::Hotel', :join_table => 'naturesoft_hotels_areas_hotels'
+    end
     after_save :update_level
     
     def update_level
