@@ -1,14 +1,14 @@
 module Naturesoft
   module Areas
-    module Admin
-      class CountriesController < Naturesoft::Admin::AdminController
+    module Backend
+      class CountriesController < Naturesoft::Backend::BackendController
         before_action :set_country, only: [:show, :edit, :update, :enable, :disable, :destroy]
         before_action :default_breadcrumb
             
         # add top breadcrumb
         def default_breadcrumb
-          add_breadcrumb "Area", naturesoft_areas.admin_countries_path
-          add_breadcrumb "Countries", naturesoft_areas.admin_countries_path
+          add_breadcrumb "Area", naturesoft_areas.backend_countries_path
+          add_breadcrumb "Countries", naturesoft_areas.backend_countries_path
         end
     
         # GET /countries
@@ -37,7 +37,7 @@ module Naturesoft
           @country.user = current_user
     
           if @country.save
-            redirect_to naturesoft_areas.edit_admin_country_path(@country.id), notice: 'Country was successfully created.'
+            redirect_to naturesoft_areas.edit_backend_country_path(@country.id), notice: 'Country was successfully created.'
           else
             render :new
           end
@@ -46,7 +46,7 @@ module Naturesoft
         # PATCH/PUT /countries/1
         def update
           if @country.update(country_params)
-            redirect_to naturesoft_areas.edit_admin_country_path(@country.id), notice: 'Country was successfully updated.'
+            redirect_to naturesoft_areas.edit_backend_country_path(@country.id), notice: 'Country was successfully updated.'
           else
             render :edit
           end

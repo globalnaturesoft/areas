@@ -3,7 +3,7 @@
   areas = Naturesoft::Areas::Area.where(id: options["areas"])
 %>
 
-<%= render "naturesoft/"+nsmodule.engine_name+"/admin/nsmodules/"+nsmodule.module_name+"/templates/"+options["style"],
+<%= render "naturesoft/"+nsmodule.engine_name+"/backend/nsmodules/"+nsmodule.module_name+"/templates/"+options["style"],
   options: options,
   areas: areas.limit(6),
   nsmodule: nsmodule

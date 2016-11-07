@@ -13,7 +13,7 @@
   </div>
 <% end %>
 
-<%= form_for([naturesoft_areas, :admin, area], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
+<%= form_for([naturesoft_areas, :backend, area], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
     
     <div class="form-group">
         <label class="col-md-2 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
@@ -38,7 +38,7 @@
               {
                 class: "select2-ajax",
                 include_blank: "none",
-                "data-url": select2_admin_areas_path,
+                "data-url": select2_backend_areas_path,
                 "data-excluded": area.id,
               }
             ) %>            

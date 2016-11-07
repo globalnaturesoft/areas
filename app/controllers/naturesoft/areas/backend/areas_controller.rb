@@ -1,14 +1,14 @@
 module Naturesoft
   module Areas
-    module Admin
-      class AreasController < Naturesoft::Admin::AdminController
+    module Backend
+      class AreasController < Naturesoft::Backend::BackendController
         before_action :set_area, only: [:show, :edit, :update, :destroy]
         before_action :default_breadcrumb
             
         # add top breadcrumb
         def default_breadcrumb
-          add_breadcrumb "Area", naturesoft_areas.admin_areas_path
-          add_breadcrumb "Areas", naturesoft_areas.admin_areas_path
+          add_breadcrumb "Area", naturesoft_areas.backend_areas_path
+          add_breadcrumb "Areas", naturesoft_areas.backend_areas_path
         end
     
         # GET /areas
@@ -36,7 +36,7 @@ module Naturesoft
           @area = Area.new(area_params)
     
           if @area.save
-            redirect_to naturesoft_areas.edit_admin_area_path(@area.id), notice: 'Area was successfully created.'
+            redirect_to naturesoft_areas.edit_backend_area_path(@area.id), notice: 'Area was successfully created.'
           else
             render :new
           end
@@ -45,7 +45,7 @@ module Naturesoft
         # PATCH/PUT /areas/1
         def update
           if @area.update(area_params)
-            redirect_to naturesoft_areas.edit_admin_area_path(@area.id), notice: 'Area was successfully updated.'
+            redirect_to naturesoft_areas.edit_backend_area_path(@area.id), notice: 'Area was successfully updated.'
           else
             render :edit
           end
