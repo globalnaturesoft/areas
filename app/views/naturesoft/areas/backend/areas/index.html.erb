@@ -57,6 +57,7 @@
                         <th width="1%" class="check_all_list">
                             <input type="checkbox" class="styled">
                         </th>
+                        <th><%= t(:image) %></th>
                         <th><%= t(:name) %></th>
                         <th><%= t(:created_at) %></th>
                         <th class="text-center"><%= t(:actions) %></th>
@@ -70,6 +71,9 @@
                                     name="ids[]"
                                     value="<%= item.id %>"
                                 />
+                            </td>
+                            <td>
+                                <a href="<%= naturesoft_areas.edit_backend_area_path(item) %>"><%= image_tag(image_src(item.image.system), size: "70x70", class: "img-rounded img-preview") %></a>
                             </td>
                             <td class="kq_search">
                               <strong><%= link_to item.full_name, naturesoft_areas.edit_backend_area_path(item) %></strong>
