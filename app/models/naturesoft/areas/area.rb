@@ -8,6 +8,10 @@ module Naturesoft::Areas
     end
     after_save :update_level
     
+    def self.get_main_areas
+			self.where(level: 1)
+		end
+    
     def update_level
       level = 1
 			p = self.parent
