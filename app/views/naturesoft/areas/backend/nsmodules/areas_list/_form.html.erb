@@ -19,7 +19,7 @@
   </div>
   <div class="col-md-6">
     <div class="form-group">
-        <label class="control-label" ><%= t(:style) %> </label>
+        <label class="control-label" ><%= t(:description) %> </label>
         <div class="">
             <%= text_area_tag "options[description]", options["description"], class: "form-control" %>
         </div>
@@ -27,11 +27,28 @@
   </div> 
 </div>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <div class="form-group">
         <label class="control-label" ><%= t(:style) %> <span class='text-danger'>*</span></label>
         <div class="">
           <%= text_field_tag "options[style]", options["style"], class: "form-control required" %>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+        <label class="control-label" ><%= t(:menu_id) %> <span class='text-danger'>*</span></label>
+        <div class="">
+            <% menu = Naturesoft::Menus::Menu.where(id: options["menu_id"]).first %>
+            <% selected = options_for_select([[menu.name,menu.id]], menu.id) if !menu.nil? %>
+            <%= select_tag("options[menu_id]",
+              selected,
+              {
+                class: "select2-ajax required",
+                include_blank: "none",
+                "data-url": naturesoft_menus.select2_backend_menus_path(parent_id: "all"),
+              }
+            ) %>
         </div>
     </div>
   </div>
